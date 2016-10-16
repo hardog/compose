@@ -11,6 +11,37 @@ module.exports = compose;
 // done 什么时候被判断为true
 // 答: 每一次gen.next() 执行结束后ret.done为true
 // co里面对于每一个generator会调用一次co(gen)去执行
+// 
+// compose 组合后中间件的执行顺序是怎么样的?
+// 场景一:
+// compose([
+//  function *(next){
+//      console.log(1);
+//      yield* next;
+//  },
+//  function *(next){
+//      console.log(2);
+//      yield* next;
+//  }
+// ]);
+// 
+// 上述执行顺序是怎么样的? 如何实现的?
+// 
+// 场景二:
+// compose([
+//  function *(next){
+//      console.log(1);
+//      yield* next;
+//  },
+//  function *(next){
+//      console.log(2);
+//      yield* next;
+//  }
+// ])(function *(){
+//      console.log(3);
+// }())
+// 
+// 上述执行顺序又是怎么样的? 为什么?
 function compose(middleware){
   return function *(next){
     if (!next) next = noop();

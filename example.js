@@ -1,5 +1,24 @@
 'use strict';
 
+const compose = require('./');
+
+let c = compose([
+ function *(next){
+     console.log(1);
+     yield* next;
+ },
+ function *(next){
+     console.log(2);
+     yield* next;
+ }
+])(function *(){
+     console.log(3);
+}());
+
+console.log(c.next());
+
+console.log('------------ SECTION1 -------------');
+
 function *anotherG(){
     console.log('##############################');
     console.log('another yield primitive value');
