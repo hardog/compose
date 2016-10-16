@@ -11,17 +11,16 @@
   "files": [
     "index.js"
   ],
-  "dependencies": {},
   "devDependencies": {
-    "co": "^3.0.0",
-    "istanbul": "^0.4.2",
+    "co": "^4.6.0",
     "mocha": "^2.4.5",
-    "should": "^2.0.0"
+    "should": "^2.0.0",
+    "istanbul": "^0.4.5"
   },
   "scripts": {
-    "test": "mocha --harmony --require should --reporter spec",
-    "test-cov": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --require should",
-    "test-travis": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- --require should"
+    "test": "node_modules/mocha/bin/mocha --harmony --require should --reporter spec test/test@co4.js",
+    "test-cov": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- --require should",
+    "test-travis": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should"
   },
   "license": "MIT"
 }
